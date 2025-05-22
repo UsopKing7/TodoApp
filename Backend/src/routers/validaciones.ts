@@ -10,3 +10,9 @@ export const registerSchema = z.object({
   email: z.string().email('El correo electrònìco no es valido'),
   password: z.string().min(8, 'La contraseña es requerida y debe tener al menos 8 caracteres')
 })
+
+export const updateUsuario = z.object({
+  username: z.string().min(3, 'El nombre usuario no es valido').optional(),
+  email: z.string().email().optional(),
+  password: z.string().min(8, 'La contraseña debe tener al menos 8 caracteres').optional()
+})
