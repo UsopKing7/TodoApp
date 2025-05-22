@@ -1,14 +1,12 @@
 import express from 'express'
-import { pool } from './models/db'
 import { PORT } from './config'
+import { midelware } from './routers/middelware'
 
 const app = express()
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
-app.get('/', async (_req, res) => {
-  const [rpws] = await pool.query('SELECT * FROM usuarios')
-  res.status(200).json({rpws})
-})
+app.use(midelware)
 
 app.listen(PORT.port, '0.0.0.0', () => {
   console.table({
