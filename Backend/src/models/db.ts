@@ -18,7 +18,7 @@ const connection = async () => {
     console.log(pc.blue('[+] Connected to the database'))
     conn.release()
   } catch (error) {
-    console.log(pc.red('[-] Error connecting to the database:'), error)
+    console.log(pc.red('[-] Error connecting to the database:'))
   }
 }
 connection()
