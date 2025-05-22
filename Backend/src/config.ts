@@ -33,3 +33,10 @@ interface Sal {
 export const SAL: Sal = {
   sal: Number(process.env.SAL) || 10
 }
+
+// typos - interface para update usuario
+export type UpdateUsuario = {
+  username?: string | undefined
+  email?: string | undefined
+  password1?: string | undefined
+}
