@@ -1,16 +1,17 @@
 import express from 'express'
+import { pool } from './models/db'
+import { PORT } from './config'
 
 const app = express()
 app.use(express.json())
 
-const PORT = 3333
-
-app.get('/ping', (_req, res) => {
-  res.status(200).json({ message: 'Pong' })
+app.get('/', async (_req, res) => {
+  const [rpws] = await pool.query('SELECT * FROM usuarios')
+  res.status(200).json({rpws})
 })
 
-app.listen(PORT, () => {
+app.listen(PORT.port, '0.0.0.0', () => {
   console.table({
-    URL: `http:192.168.1.15:${PORT}`
+    URL: `http://0.0.0.0:${PORT.port}`
   })
 })
