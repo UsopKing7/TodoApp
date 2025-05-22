@@ -25,15 +25,9 @@ routerLogin.post('/login', async (req, res)  => {
     })
 
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      res.status(500).json({
-        message: 'Error al verificar el usuario',
-        error: error.message || error
-      })
-    }
     res.status(500).json({
-      message: 'Error interno del servidor',
-      error 
+      message: 'Error al verificar el usuario',
+      error: error instanceof Error ? error.message : error
     })
   }
 })
@@ -66,15 +60,9 @@ routerLogin.post('/register', async (req, res) => {
     })
     
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      res.status(500).json({
-        message: 'Error al registrar el usuario',
-        error: error.message || error
-      })
-    }
     res.status(500).json({
-      message: 'Error interno del servidor',
-      error
+      message: 'Error al verificar el usuario',
+      error: error instanceof Error ? error.message : error
     })
   }
 })
