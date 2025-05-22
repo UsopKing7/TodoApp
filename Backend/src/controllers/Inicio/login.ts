@@ -7,9 +7,8 @@ import bcrypt from 'bcrypt'
 export const routerLogin = Router()
 
 routerLogin.post('/login', async (req, res)  => {
-  const validatorLogin: Login = loginSchema.parse(req.body)
-
   try {
+    const validatorLogin: Login = loginSchema.parse(req.body)
     const [usuarioExistente] = await pool.query<UsernameConsulta[]>(
       'SELECT * FROM usuarios WHERE email = ?', [validatorLogin.email]
     )
@@ -33,9 +32,9 @@ routerLogin.post('/login', async (req, res)  => {
 })
 
 routerLogin.post('/register', async (req, res) => {
-  const validationRegister: Register = registerSchema.parse(req.body)
-  const hashPassword = await bcrypt.hash(validationRegister.password, SAL.sal)
   try {
+    const validationRegister: Register = registerSchema.parse(req.body)
+    const hashPassword = await bcrypt.hash(validationRegister.password, SAL.sal)
     const [correoExiste] = await pool.query<UsernameConsulta[]>(
       'SELECT * FROM usuarios WHERE email = ?', [validationRegister.email]
     )
