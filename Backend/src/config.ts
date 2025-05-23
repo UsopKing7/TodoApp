@@ -13,11 +13,32 @@ export type Login = {
   password: string
 }
 
+// interfase para el Usuario de la base de datos
 export interface UsernameConsulta extends RowDataPacket{
   id: `${string}-${string}-${string}-${string}-${string}`
   username: string
   email: string
   password: string
+}
+
+// interfase para las tareas de la base de datos
+export interface TareasConsulta extends RowDataPacket {
+  id: `${string}-${string}-${string}-${string}-${string}`
+  titulo: string
+  descripcion: string
+  completada: boolean
+  fecha_creacion: Date
+  usuario_id: `${string}-${string}-${string}-${string}-${string}`
+}
+
+// interface para insertar tareas
+export interface TareaInsertar extends RowDataPacket {
+  id: `${string}-${string}-${string}-${string}-${string}`
+  titulo: string
+  descripcion: string
+  completada: boolean
+  fecha_creacion: Date
+  usuario_id: `${string}-${string}-${string}-${string}-${string}`
 }
 
 export type Register = {
@@ -34,9 +55,23 @@ export const SAL: Sal = {
   sal: Number(process.env.SAL) || 10
 }
 
-// typos - interface para update usuario
+// typos para update usuario
 export type UpdateUsuario = {
   username?: string | undefined
   email?: string | undefined
   password1?: string | undefined
+}
+
+// typos para agregar tareas
+export type AgregarTarea = {
+  titulo: string
+  descripcion: string
+  completada: boolean
+}
+
+// typos para actualizar tareas
+export type UpdateTarea = {
+  titulo?: string
+  descripcion?: string
+  completada?: boolean
 }
