@@ -19,7 +19,8 @@ routerUsuario.get('/usuario/:id', async (req, res) => {
     res.status(200).json({
       message: 'usuario encontrado',
       data: usuario.map((user) => ({
-        td: user.username
+        user: user.username,
+        gmail: user.email
       }))
     })
 
@@ -58,6 +59,29 @@ routerUsuario.patch('/usuario/update/:id', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: 'Error al actualizar el usuario',
+      error: error instanceof Error ? error.message : error
+    })
+  }
+})
+
+routerUsuario.delete('/usuario/delete/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const [usuarioExiste] = await pool.query<UsernameConsulta[]>(
+      'SELECT * FORM usuarios WHERE id = ?', [id]
+    )
+
+    if (usuarioExiste.length === 0) res.status(404).json({ message: 'Usuario no encontrado' })
+
+    await pool.query<UsernameConsulta[]>(
+      'DELETE FROM usuarios WHERE id = ?', [id]
+    )
+
+    res.status(200).json({ message: 'Usuario eliminado correctamente' })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error al eliminar el usuario',
       error: error instanceof Error ? error.message : error
     })
   }
