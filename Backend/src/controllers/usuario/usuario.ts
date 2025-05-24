@@ -21,9 +21,9 @@ routerUsuario.get('/usuario/:id', async (req, res) => {
       data: usuario.map((user) => ({
         user: user.username,
         gmail: user.email
-      }))
-    }),
-    req.user
+      })),
+      username: req.user
+    })
 
   } catch (error) {
     res.status(500).json({
@@ -54,9 +54,9 @@ routerUsuario.patch('/usuario/update/:id', async (req, res) => {
     )
 
     res.status(200).json({
-      message: 'Usuario actualizado'
-    }),
-    req.user
+      message: 'Usuario actualizado',
+      username: req.user
+    })
 
   } catch (error) {
     res.status(500).json({
@@ -80,8 +80,10 @@ routerUsuario.delete('/usuario/delete/:id', async (req, res) => {
       'DELETE FROM usuarios WHERE id = ?', [id]
     )
 
-    res.status(200).json({ message: 'Usuario eliminado correctamente' })
-    req.user
+    res.status(200).json({
+      message: 'Usuario eliminado correctamente',
+      username: req.user
+    })
   } catch (error) {
     res.status(500).json({
       message: 'Error al eliminar el usuario',

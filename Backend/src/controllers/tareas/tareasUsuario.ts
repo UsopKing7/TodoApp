@@ -30,8 +30,8 @@ tareasUsuario.get('/usuario/tareas/:id', async (req, res) => {
         completada: tarea.completada,
         hora: tarea.fecha_creacion
       })),
-    }),
-    req.user
+      username: req.user
+    })
   } catch (error) {
     res.status(500).json({
       message: 'Error al obtener las tareas del usuario',
@@ -66,9 +66,9 @@ tareasUsuario.post('/usuario/agregar-tarea/:id', async (req, res) => {
       message: 'Tarea agregada exitosamente',
       titulo: vTarea.titulo,
       descripcion: vTarea.descripcion,
-      completada: vTarea.completada
-    }),
-    req.user
+      completada: vTarea.completada,
+      username: req.user
+    })
 
   } catch (error) {
     res.status(500).json({
@@ -103,7 +103,8 @@ tareasUsuario.delete('/usuario/tarea/eliminar/:id', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: 'Error al encontar la tarea para eliminar',
-      error: error instanceof Error ? error.message : error
+      error: error instanceof Error ? error.message : error,
+      username: req.user
     })
   }
 })
@@ -135,17 +136,20 @@ tareasUsuario.delete('/usuario/delete/tareas/:id_usuario', async (req, res) => {
     )
 
     res.status(200).json({
-      username: usuarioExiste.map((user) => ({
+      message: usuarioExiste.map((user) => ({
         username: `tareas eliminadas de ${user.username}`
       })),
       tareasElimindas: UsuarioConTareas.map((tarea) => ({
         tarea: tarea.titulo
-      }))
+      })),
+      username: req.user
     })
+
   } catch (error) {
     res.status(500).json({
       message: 'Error al eliminar todas las tareas',
-      error: error instanceof Error ? error.message : error
+      error: error instanceof Error ? error.message : error,
+      usuario: req.user
     })
     return
   }
@@ -174,7 +178,8 @@ tareasUsuario.patch('/usuario/tarea/editar/:id', async (req, res) => {
     )
 
     res.status(200).json({
-      message: 'Tarea actualizada'
+      message: 'Tarea actualizada',
+      username: req.user
     })
 
   } catch (error) {
