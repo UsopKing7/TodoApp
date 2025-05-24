@@ -14,7 +14,7 @@ export type Login = {
 }
 
 // interfase para el Usuario de la base de datos
-export interface UsernameConsulta extends RowDataPacket{
+export interface UsernameConsulta extends RowDataPacket {
   id: `${string}-${string}-${string}-${string}-${string}`
   username: string
   email: string
@@ -42,8 +42,8 @@ export interface TareaInsertar extends RowDataPacket {
 }
 
 export type Register = {
-  username: string,
-  email: string,
+  username: string
+  email: string
   password: string
 }
 
@@ -74,4 +74,21 @@ export type UpdateTarea = {
   titulo?: string
   descripcion?: string
   completada?: boolean
+}
+
+// Interface para el secret_key
+interface secret {
+  secret: string
+}
+
+export const SECRET: secret = {
+  secret: String(process.env.SECRET_KEY)
+}
+
+// interface para ruta protegida
+export interface UsuarioToken {
+  email: string
+  id: number
+  iat: number
+  exp: number
 }
