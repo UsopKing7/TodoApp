@@ -29,8 +29,9 @@ tareasUsuario.get('/usuario/tareas/:id', async (req, res) => {
         descripcion: tarea.descripcion,
         completada: tarea.completada,
         hora: tarea.fecha_creacion
-      }))
-    })
+      })),
+    }),
+    req.user
   } catch (error) {
     res.status(500).json({
       message: 'Error al obtener las tareas del usuario',
@@ -66,7 +67,8 @@ tareasUsuario.post('/usuario/agregar-tarea/:id', async (req, res) => {
       titulo: vTarea.titulo,
       descripcion: vTarea.descripcion,
       completada: vTarea.completada
-    })
+    }),
+    req.user
 
   } catch (error) {
     res.status(500).json({
@@ -95,7 +97,8 @@ tareasUsuario.delete('/usuario/tarea/eliminar/:id', async (req, res) => {
       tarea: tareaExiste.map((tarea) => ({
         titulo: tarea.titulo
       }))
-    })
+    }),
+    req.user
 
   } catch (error) {
     res.status(500).json({
