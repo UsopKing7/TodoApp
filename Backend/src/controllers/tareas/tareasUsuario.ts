@@ -5,6 +5,7 @@ import { agregarTarea, updateTarea } from '../../routers/validaciones'
 
 export const tareasUsuario = Router()
 
+// Mostrar una tarea especifica del Usuario
 tareasUsuario.get('/usuario/tareas/:id', async (req, res) => {
   try {
     const { id } = req.params
@@ -38,6 +39,7 @@ tareasUsuario.get('/usuario/tareas/:id', async (req, res) => {
   }
 })
 
+// Agregar una tarea especifica al usuario
 tareasUsuario.post('/usuario/agregar-tarea/:id', async (req, res) => {
   try {
     const { id } = req.params
@@ -74,6 +76,7 @@ tareasUsuario.post('/usuario/agregar-tarea/:id', async (req, res) => {
   }
 })
 
+// Eliminar una tarea en especifica
 tareasUsuario.delete('/usuario/tarea/eliminar/:id', async (req, res) => {
   try {
     const { id } = req.params
@@ -102,6 +105,50 @@ tareasUsuario.delete('/usuario/tarea/eliminar/:id', async (req, res) => {
   }
 })
 
+// eliminar todos las tareas del usuario
+tareasUsuario.delete('/usuario/delete/tareas/:id_usuario', async (req, res) => {
+  try {
+    const { id_usuario } = req.params
+    const [usuarioExiste] = await pool.query<UsernameConsulta[]>(
+      'SELECT * FROM usuarios WHERE id = ?', [id_usuario]
+    )
+
+    if (usuarioExiste.length === 0) { 
+      res.status(404).json({ message: 'No se puede econtrar al usuario' })
+      return
+    }
+
+    const [UsuarioConTareas] = await pool.query<TareasConsulta[]>(
+      'SELECT * FROM tareas WHERE usuario_id = ?', [id_usuario]
+    )
+
+    if (UsuarioConTareas.length === 0) {
+      res.status(404).json({ message: 'El usuario no tiene tareas'})
+      return
+    } 
+
+    await pool.query(
+      'DELETE FROM tareas WHERE usuario_id = ?', [id_usuario]
+    )
+
+    res.status(200).json({
+      username: usuarioExiste.map((user) => ({
+        username: `tareas eliminadas de ${user.username}`
+      })),
+      tareasElimindas: UsuarioConTareas.map((tarea) => ({
+        tarea: tarea.titulo
+      }))
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error al eliminar todas las tareas',
+      error: error instanceof Error ? error.message : error
+    })
+    return
+  }
+})
+
+// Actualizar una tarea en especifica al Usuario
 tareasUsuario.patch('/usuario/tarea/editar/:id', async (req, res) => {
   try {
     const { id } = req.params
