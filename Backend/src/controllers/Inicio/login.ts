@@ -1,8 +1,9 @@
 import { Router } from 'express'
 import { pool } from '../../models/db'
-import { Login, UsernameConsulta, Register, SAL } from '../../config'
+import { Login, UsernameConsulta, Register, SAL, SECRET } from '../../config'
 import { loginSchema, registerSchema } from '../../routers/validaciones'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 export const routerLogin = Router()
 
@@ -13,14 +14,28 @@ routerLogin.post('/login', async (req, res)  => {
       'SELECT * FROM usuarios WHERE email = ?', [validatorLogin.email]
     )
 
-    if (usuarioExistente.length === 0) res.status(404).json({ message: 'Usuario no encontrado' })
+    if (usuarioExistente.length === 0){
+      res.status(404).json({ message: 'Usuario no encontrado' })
+      return
+    }
 
     const passwordVerificado = await bcrypt.compare(validatorLogin.password, usuarioExistente[0].password)
 
-    if (!passwordVerificado) res.status(401).json({ message: 'Contraseña incorrecta' })
+    if (!passwordVerificado) {
+      res.status(401).json({ message: 'Contraseña incorrecta' })
+      return
+    }
 
+    const token = jwt.sign({ email: String }, SECRET.secret, { expiresIn: '1h' })
+
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 3600000
+    })
     res.status(200).json({
-      message: 'Login exitoso',
+      message: 'Login exitoso'
     })
 
   } catch (error: unknown) {
@@ -64,4 +79,14 @@ routerLogin.post('/register', async (req, res) => {
       error: error instanceof Error ? error.message : error
     })
   }
+})
+
+routerLogin.post('/logout', async (_req, res) => {
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict'
+  })
+  
+  res.status(200).json({ message: 'Session serrada correctamente' })
 })
