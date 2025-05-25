@@ -1,8 +1,5 @@
-function App() {
+import { AppRouter } from './routers/AppRouter'
 
-  return (
-    <h1>Hello Word este sera mi inicio</h1>
-  )
+export const App = () => {
+  return <AppRouter />
 }
-
-export default App
