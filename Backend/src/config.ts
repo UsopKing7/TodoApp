@@ -92,3 +92,11 @@ export interface UsuarioToken {
   iat: number
   exp: number
 }
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: string | UsuarioToken
+    }
+  }
+}
