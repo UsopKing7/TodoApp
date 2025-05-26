@@ -1,14 +1,15 @@
-import type { ReactNode } from "react";
-import { Navigate } from "react-router-dom";
+import type { ReactNode } from 'react'
+import Cookies from 'js-cookie'
+import { Navigate } from 'react-router-dom'
 
 interface Props {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export const ProtectedRoute = ({ children }: Props) => {
-  const token = localStorage.getItem("token");
+  const token = Cookies.get('token')
 
-  if (!token) return <Navigate to={"/login"} />;
+  if (!token) return <Navigate to='/' replace/>
 
-  return <>{children}</>;
-};
+  return children
+}
