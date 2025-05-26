@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { BASE_URL, type UseUsuariosReturn } from '../../config'
 
 export const useUsuarios = (): UseUsuariosReturn => {
+  const { id } = useParams<{ id: string }>()
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const navigate = useNavigate()
@@ -24,7 +25,7 @@ export const useUsuarios = (): UseUsuariosReturn => {
 
     if (res.ok) {
       alert('Inicio de session exitoso')
-      navigate('/tareas')
+      navigate(`/tareas/${id}`)
     } else {
       alert('Inicio de session fallida')
     }
