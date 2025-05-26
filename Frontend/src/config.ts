@@ -7,3 +7,11 @@ export type UseUsuariosReturn = {
   setPassword: React.Dispatch<React.SetStateAction<string>>
   hadnledSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>
 }
+
+export type UsePasswordRetuns = {
+  email: string
+  setEmail: React.Dispatch<React.SetStateAction<string>>
+  password: string
+  setPassword: React.Dispatch<React.SetStateAction<string>>
+  hadnledRecuperar: (e: React.FormEvent<HTMLFormElement>) => Promise<void>
+}
