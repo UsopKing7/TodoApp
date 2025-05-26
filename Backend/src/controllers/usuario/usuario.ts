@@ -91,3 +91,30 @@ routerUsuario.delete('/usuario/delete/:id', async (req, res) => {
     })
   }
 })
+
+routerUsuario.patch('/recuperar/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    const { email, password } = req.body
+    const passwordHash = await bcrypt.hash(password, SAL.sal)
+
+    const [UsuarioExiste] = await pool.query<UsernameConsulta[]>(
+      'SELECT * FROM usuarios WHERE id = ? AND email = ?', [id, email]
+    )
+    if (UsuarioExiste.length === 0) {
+      res.status(404).json({ message: 'Usuario no existe' })
+      return
+    }
+
+    await pool.query(
+      'UPDATE usuarios SET password = ? WHERE id = ?', [passwordHash, id]
+    )
+
+    res.status(200).json({ message: 'Contraseña actualizada correctamente' })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error al actualizar la contraseña',
+      error: error instanceof Error ? error.message : error
+    })
+  }
+})
