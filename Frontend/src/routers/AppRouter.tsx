@@ -11,7 +11,7 @@ export const AppRouter = () => {
       <Route path="/" element={<Inicio />} />
       <Route path="/recuperar" element={<RecuperarPassword />} />
       <Route
-        path="/tareas"
+        path="/tareas/:id"
         element={
           <ProtectedRoute>
             <Tareas />
