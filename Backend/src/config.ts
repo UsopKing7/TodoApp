@@ -26,7 +26,7 @@ export interface TareasConsulta extends RowDataPacket {
   id: `${string}-${string}-${string}-${string}-${string}`
   titulo: string
   descripcion: string
-  completada: boolean
+  completada: number
   fecha_creacion: Date
   usuario_id: `${string}-${string}-${string}-${string}-${string}`
 }
@@ -36,7 +36,7 @@ export interface TareaInsertar extends RowDataPacket {
   id: `${string}-${string}-${string}-${string}-${string}`
   titulo: string
   descripcion: string
-  completada: boolean
+  completada: number
   fecha_creacion: Date
   usuario_id: `${string}-${string}-${string}-${string}-${string}`
 }
@@ -66,14 +66,14 @@ export type UpdateUsuario = {
 export type AgregarTarea = {
   titulo: string
   descripcion: string
-  completada: boolean
+  completada: number
 }
 
 // typos para actualizar tareas
 export type UpdateTarea = {
   titulo?: string
   descripcion?: string
-  completada?: boolean
+  completada?: number
 }
 
 // Interface para el secret_key
