@@ -1,9 +1,10 @@
 import { Router } from 'express'
 import { pool } from '../../models/db'
-import { Login, UsernameConsulta, Register, SAL, SECRET } from '../../config'
+import { Login, UsernameConsulta, Register, SAL, SECRET, UsuarioToken } from '../../config'
 import { loginSchema, registerSchema } from '../../routers/validaciones'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import { rutaProtegida } from '../Inicio/rutaProtected'
 
 export const routerLogin = Router()
 
@@ -19,6 +20,8 @@ routerLogin.post('/login', async (req, res)  => {
       return
     }
 
+    const usuario = usuarioExistente[0]
+
     const passwordVerificado = await bcrypt.compare(validatorLogin.password, usuarioExistente[0].password)
 
     if (!passwordVerificado) {
@@ -26,7 +29,7 @@ routerLogin.post('/login', async (req, res)  => {
       return
     }
 
-    const token = jwt.sign({ email: String }, SECRET.secret, { expiresIn: '1h' })
+    const token = jwt.sign({ id: usuario.id, email: usuario.email, username: usuario.username }, SECRET.secret, { expiresIn: '1h' })
 
     res.cookie('token', token, {
       httpOnly: true,
@@ -89,4 +92,11 @@ routerLogin.post('/logout', async (_req, res) => {
   })
   
   res.status(200).json({ message: 'Session serrada correctamente' })
+})
+
+export const routerId = Router()
+routerId.get('/id', rutaProtegida, async (req, res) => {
+  const user = req.user as UsuarioToken
+  const { id, email, username } = user
+  res.status(200).json({ id, email, username })
 })
