@@ -15,3 +15,13 @@ export type UsePasswordRetuns = {
   setPassword: React.Dispatch<React.SetStateAction<string>>
   hadnledRecuperar: (e: React.FormEvent<HTMLFormElement>) => Promise<void>
 }
+
+export interface UsernameEmail {
+  username: string
+  email: string
+}
+
+export interface TareasUsuario {
+  id: string
+  titulo: string
+}
