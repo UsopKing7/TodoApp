@@ -88,7 +88,8 @@ export const SECRET: secret = {
 // interface para ruta protegida
 export interface UsuarioToken {
   email: string
-  id: number
+  username: string
+  id: string
   iat: number
   exp: number
 }
