@@ -20,11 +20,11 @@ export const updateUsuario = z.object({
 export const agregarTarea = z.object({
   titulo: z.string().min(3, 'El titulo es requerido y no debe ser vacio o menor a 3 caracteres'),
   descripcion: z.string().min(10, 'La descripcion es requerida y no debe ser vacio o menor a 10 caracteres'),
-  completada: z.boolean().default(false)
+  completada: z.number().default(0)
 })
 
 export const updateTarea = z.object({
   titulo: z.string().min(3, 'El titulo es requerido y no debe ser vacio o menor a 3 caracteres').optional(),
   descripcion: z.string().min(10, 'La descripcion es requerida y no debe ser vacio o menor a 10 caracteres').optional(),
-  completada: z.boolean().optional()
+  completada: z.number().optional()
 })
