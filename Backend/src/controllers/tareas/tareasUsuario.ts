@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { pool } from '../../models/db'
-import { TareasConsulta, AgregarTarea, TareaInsertar, UsernameConsulta, UpdateTarea } from '../../config'
+import { TareasConsulta, AgregarTarea, UsernameConsulta, UpdateTarea } from '../../config'
 import { agregarTarea, updateTarea } from '../../routers/validaciones'
 
 export const tareasUsuario = Router()
@@ -50,9 +50,12 @@ tareasUsuario.post('/usuario/agregar-tarea/:id', async (req, res) => {
       'SELECT * FROM usuarios WHERE id = ?', [id]
     )
 
-    if (usuarioExiste.length === 0) res.status(404).json({ message: 'Usuario no encontrado' })
+    if (usuarioExiste.length === 0) {
+      res.status(404).json({ message: 'Usuario no encontrado' })
+      return
+    }
 
-    await pool.query<TareaInsertar[]>(
+    const [tareaAgragada] = await pool.query(
       'INSERT INTO tareas (titulo, descripcion, completada, usuario_id) VALUES (?,?,?,?)',
       [
         vTarea.titulo,
@@ -61,6 +64,11 @@ tareasUsuario.post('/usuario/agregar-tarea/:id', async (req, res) => {
         id
       ]
     )
+
+    if (!tareaAgragada) {
+      res.status(404).json({ message: 'no hay datos en la tarea' })
+      return
+    }
 
     res.status(201).json({
       message: 'Tarea agregada exitosamente',
