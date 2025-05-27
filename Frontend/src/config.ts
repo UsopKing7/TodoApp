@@ -24,4 +24,14 @@ export interface UsernameEmail {
 export interface TareasUsuario {
   id: string
   titulo: string
+  hora: string
+  completada: number
+  descripcion: string
+}
+
+export type UseTareasReturn = {
+  titulo: string
+  descripcion: string
+  completada: string
+  hadnledRecuperar: (e: React.FormEvent<HTMLFormElement>) => Promise<void>
 }
