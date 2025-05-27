@@ -10,6 +10,8 @@ export const AgregarTarea = () => {
     setCompletada,
     hadnledAgregarTarea
   } = useAgregarTarea()
+
+  const { volver } = useVolverForm()
   return (
     <>
       <div className="auth-section">
@@ -21,11 +23,9 @@ export const AgregarTarea = () => {
               <span className="input-icon"></span>
               <input
                 type="text"
-                id="email"
                 placeholder="titulo tarea"
                 value={titulo}
                 onChange={(e) => setTitulo(e.target.value)}
-                autoComplete="email"
                 className="form-input"
               />
             </div>
@@ -34,11 +34,9 @@ export const AgregarTarea = () => {
               <span className="input-icon"></span>
               <input
                 type="text"
-                id="password"
                 placeholder="descripcion"
                 value={descripcion}
                 onChange={(e) => setDescripcion(e.target.value)}
-                autoComplete="current-password"
                 className="form-input"
               />
             </div>
@@ -63,7 +61,7 @@ export const AgregarTarea = () => {
             <button type="submit" className="auth-button primary">
               Crear Tarea
             </button>
-            <button onClick={useVolverForm} className="auth-button primary">
+            <button onClick={volver} className="auth-button primary">
               Volver
             </button>
           </form>
