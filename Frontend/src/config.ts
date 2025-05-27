@@ -35,3 +35,9 @@ export type UseTareasReturn = {
   completada: string
   hadnledRecuperar: (e: React.FormEvent<HTMLFormElement>) => Promise<void>
 }
+
+export type UseTareas ={
+  titulo: string
+  descripcion: string
+  completada: string
+}
