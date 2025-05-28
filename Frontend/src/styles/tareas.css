@@ -244,6 +244,9 @@ body {
 }
 
 .agregar-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 2rem;
   padding: 0.75rem 1.5rem;
   background-color: var(--secondary);
@@ -252,7 +255,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: background 0.3s ease;
-  top: 10px;
+  width: 80px;
 }
 
 .realizado {
