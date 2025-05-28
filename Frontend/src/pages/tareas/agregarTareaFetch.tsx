@@ -6,7 +6,7 @@ export const useAgregarTarea = () => {
   const { id } = useParams<{ id: string }>()
   const [titulo, setTitulo] = useState('')
   const [descripcion, setDescripcion] = useState('')
-  const [completada, setCompletada] = useState<number | null>(null)
+  const [completada, setCompletada] = useState<number | null>(0)
   const navigate = useNavigate()
 
   const hadnledAgregarTarea = async (e: React.FormEvent<HTMLFormElement>) => {

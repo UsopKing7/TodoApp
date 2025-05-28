@@ -25,6 +25,7 @@ tareasUsuario.get('/usuario/tareas/:id', async (req, res) => {
     res.status(200).json({
       message: 'Tareas obtenidas del usuario',
       usuario: tareas.map((tarea) => ({
+        id: tarea.id,
         titulo: tarea.titulo,
         descripcion: tarea.descripcion,
         completada: tarea.completada,

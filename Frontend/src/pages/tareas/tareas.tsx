@@ -5,7 +5,8 @@ import {
   FaInbox,
   FaInfoCircle,
   FaTasks,
-  FaPlus
+  FaPlus,
+  FaRegLemon
 } from 'react-icons/fa'
 import { useLocation, useParams } from 'react-router-dom'
 import { BASE_URL, type UsernameEmail, type TareasUsuario } from '../../config'
@@ -77,14 +78,21 @@ export const Tareas = () => {
               Bienvenido, <span className="username">{username}</span>
             </h3>
             <p className="user-email">{email}</p>
+            <Link to={`/tareas/agregar/${id}`} className="agregar-btn">
+              {' '}
+              <FaPlus />
+            </Link>
+            <input
+              type="text"
+              className="form-input"
+              placeholder="Filtrar por titulo"
+            />
           </div>
-
           <div className="task-section">
             <h2 className="section-title">
               <FaTasks className="section-icon" /> Tus Tareas
               <span className="task-count">{tareas.length} tareas</span>
             </h2>
-
             <ul className="task-list">
               {tareas.length === 0 ? (
                 <li className="empty-state">
@@ -112,22 +120,24 @@ export const Tareas = () => {
                         </span>
                       )}
                     </label>
-                    <h5
+                    <h6
                       className={
                         tarea.completada === 1 ? 'realizado' : 'pendiente'
                       }
                     >
                       {tarea.completada === 1 ? 'Realizado' : 'Pendiente'}
-                    </h5>
+                    </h6>
+                    <Link
+                      to={`/tarea/actualiazar/${tarea.id}`}
+                      className="agregar-btn"
+                    >
+                      <FaRegLemon />
+                    </Link>
                   </li>
                 ))
               )}
             </ul>
           </div>
-          <Link to={`/tareas/agregar/${id}`} className="agregar-btn">
-            {' '}
-            <FaPlus />
-          </Link>
         </section>
 
         <section className="details-card">
