@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom'
 import {
   FaGithub,
   FaLinkedin,
-  FaEnvelope,
-  FaLock,
   FaInstagram
 } from 'react-icons/fa'
 import '../../styles/inicioStyle.css'
@@ -75,7 +73,6 @@ export const Inicio = () => {
           <form onSubmit={hadnledSubmit} className="auth-form">
             <div className="input-group">
               <span className="input-icon">
-                <FaEnvelope />
               </span>
               <input
                 type="email"
@@ -87,10 +84,8 @@ export const Inicio = () => {
                 className="form-input"
               />
             </div>
-
             <div className="input-group">
               <span className="input-icon">
-                <FaLock />
               </span>
               <input
                 type="password"
