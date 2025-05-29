@@ -7,11 +7,19 @@ export const DeleteTarea = () => {
 
   return (
     <>
-    <h1>Desea eleiminar la tarea</h1>
-      <form onSubmit={handleDelete}>
-        <button type='submit'>Eliminar</button>
-        <button onClick={volver}>Voler</button>
-      </form>
+      <div className="auth-section">
+      <h2>¿Desea eleiminar la tarea?</h2>
+        <div className="auth-card">
+          <form onSubmit={handleDelete}>
+            <button type="submit" className="auth-button primary">
+              Eliminar
+            </button>
+            <button onClick={volver} className="auth-button primary">
+              Voler
+            </button>
+          </form>
+        </div>
+      </div>
     </>
   )
 }
