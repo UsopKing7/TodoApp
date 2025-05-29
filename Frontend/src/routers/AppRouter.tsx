@@ -6,12 +6,14 @@ import { AgregarTarea } from '../pages/tareas/agregarTarea'
 import { DeleteTarea } from '../pages/tareas/deleteFromTarea'
 import { ActualizarTarea } from '../pages/tareas/editarTareaHtml'
 import { RecuperarPassword } from '../pages/inicio/recuperar'
+import { RegistrarUsuario } from '../pages/inicio/agregarUsuario'
 
 const NotFound = () => <h2>Pagina no encontrada</h2>
 export const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Inicio />} />
+      <Route path="/registrar" element={<RegistrarUsuario />} />
       <Route path="/recuperar" element={<RecuperarPassword />} />
       <Route
         path="/tareas/:id"
