@@ -196,9 +196,12 @@ tareasUsuario.patch('/usuario/tarea/editar/:id', async (req, res) => {
       'SELECT * FROM tareas WHERE id = ?', [id]
     )
 
-    if(tareaExiste.length === 0) res.status(404).json({ message: 'No existe la tarea' })
+    if(tareaExiste.length === 0) {
+      res.status(404).json({ message: 'No existe la tarea' })
+      return
+    } 
 
-    await pool.query<TareasConsulta[]>(
+    await pool.query(
       'UPDATE tareas SET titulo = ?, descripcion = ?, completada = ? WHERE id = ?',
       [
         vTareaUpdate.titulo,
@@ -218,5 +221,6 @@ tareasUsuario.patch('/usuario/tarea/editar/:id', async (req, res) => {
       message: 'Error al actualizar la tarea',
       erro: error instanceof Error ? error.message : error
     })
+    console.log(error)
   }
 })
