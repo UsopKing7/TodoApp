@@ -28,7 +28,6 @@ export const useUsuarios = (): UseUsuariosReturn => {
         credentials: 'include'
       })
       const data = await idRes.json()
-      console.log(data)
 
       if (data.id) {
         navigate(`/tareas/${data.id}`, {
