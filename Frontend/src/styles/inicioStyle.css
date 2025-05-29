@@ -325,3 +325,145 @@ body {
     font-size: 1.75rem;
   }
 }
+
+.rec-section {
+  min-height: 100vh;
+  background-color: var(--darker);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.rec-card {
+  background-color: var(--dark);
+  padding: 2rem 2.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid var(--primary-dark);
+  text-align: center;
+}
+
+.rec-title {
+  color: var(--light);
+  font-size: 1.8rem;
+  margin-bottom: 1.8rem;
+  font-weight: 700;
+}
+
+.rec-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  margin-bottom: 1.6rem;
+}
+
+.rec-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.rec-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--primary-light);
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.rec-input {
+  width: 100%;
+  padding: 0.75rem 0.75rem 0.75rem 2.8rem;
+  font-size: 1rem;
+  color: var(--light);
+  background-color: var(--darker);
+  border: 1px solid var(--gray-dark);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.rec-input::placeholder {
+  color: var(--gray);
+}
+
+.rec-input:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 8px var(--primary-light);
+}
+
+.rec-button {
+  background-color: var(--primary-dark);
+  color: var(--light);
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 0.5rem;
+  width: 100%;
+  user-select: none;
+  text-decoration: none; /* para el Link */
+  display: inline-block;
+}
+
+.rec-button:hover {
+  background-color: var(--primary);
+}
+
+.rec-button.primary {
+  margin-bottom: 1rem;
+}
+
+.rec-button.secondary {
+  background-color: transparent;
+  border: 2px solid var(--primary-light);
+  color: var(--primary-light);
+  font-weight: 600;
+  margin-top: 0.8rem;
+}
+
+.rec-button.secondary:hover {
+  background-color: var(--primary-light);
+  color: var(--dark);
+}
+
+.rec-divider {
+  position: relative;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.rec-divider::before,
+.rec-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background-color: var(--gray-dark);
+}
+
+.rec-divider::before {
+  left: 0;
+}
+
+.rec-divider::after {
+  right: 0;
+}
+
+.rec-divider-text {
+  display: inline-block;
+  padding: 0 1rem;
+  color: var(--gray);
+  font-weight: 500;
+  font-size: 1rem;
+  background-color: var(--dark);
+  position: relative;
+  z-index: 1;
+}

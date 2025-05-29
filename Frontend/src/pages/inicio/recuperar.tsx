@@ -5,32 +5,34 @@ import { FaEnvelope, FaLock } from 'react-icons/fa'
 import { useVolverForm } from '../config'
 
 export const RecuperarPassword = () => {
-  const { email, setEmail, password, setPassword, hadnledRecuperar } = useRecuperarPassword()
+  const { email, setEmail, password, setPassword, hadnledRecuperar } =
+    useRecuperarPassword()
   const { volver } = useVolverForm()
   return (
     <>
-      <div className="auth-section">
-        <div className="auth-card">
+      <div className="rec-section">
+        <div className="rec-card">
           <h2 className="auth-title">Actualizar contraseña</h2>
 
-          <form onSubmit={hadnledRecuperar} className="auth-form">
-            <div className="input-group">
-              <span className="input-icon">
+          <form onSubmit={hadnledRecuperar} className="rec-form">
+            <div className="rec-group">
+              <span className="rec-icon">
                 <FaEnvelope />
               </span>
               <input
                 type="email"
                 id="email"
-                placeholder="Buscar correo electronico"
+                placeholder="Buscar correo electrónico"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 autoComplete="email"
-                className="form-input"
+                className="rec-input"
+                required
               />
             </div>
 
-            <div className="input-group">
-              <span className="input-icon">
+            <div className="rec-group">
+              <span className="rec-icon">
                 <FaLock />
               </span>
               <input
@@ -40,23 +42,27 @@ export const RecuperarPassword = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
-                className="form-input"
+                className="rec-input"
+                required
               />
             </div>
 
-            <button type="submit" className="auth-button primary">
+            <button type="submit" className="rec-button primary">
               Actualizar contraseña
             </button>
           </form>
-          <div className="divider">
-            <span className="divider-text">o</span>
+
+          <div className="rec-divider">
+            <span className="rec-divider-text">o</span>
           </div>
 
-          <button onClick={volver} className='auth-button primary'>Volver</button>
-
-          <Link to="/registrar" className="auth-button secondary">
+          <Link to="/registrar" className="rec-button primary">
             Crear una cuenta nueva
           </Link>
+
+          <button onClick={volver} className="rec-button primary">
+            Volver
+          </button>
         </div>
       </div>
     </>
