@@ -462,3 +462,83 @@
 .delete-button.danger:hover {
   background-color: #dc2626; /* más oscuro que --error */
 }
+
+.edit-section {
+  min-height: 100vh;
+  background-color: var(--darker);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.edit-title {
+  color: var(--light);
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.edit-card {
+  background-color: var(--dark);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid var(--primary-dark);
+}
+
+.edit-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+}
+
+.edit-label {
+  color: var(--gray);
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+
+.edit-input {
+  background-color: var(--darker);
+  color: var(--light);
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--gray-dark);
+  transition: var(--transition);
+}
+
+.edit-input:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 2px var(--primary-light);
+  outline: none;
+}
+
+.edit-button {
+  background-color: var(--primary-dark);
+  color: var(--light);
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--border-radius);
+  width: 100%;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.edit-button:hover {
+  background-color: var(--primary);
+}
+
+.edit-button.primary {
+  background-color: var(--primary);
+}
+
+.edit-button.primary:hover {
+  background-color: var(--primary-light);
+}
