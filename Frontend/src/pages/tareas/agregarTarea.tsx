@@ -32,12 +32,12 @@ export const AgregarTarea = () => {
 
             <div className="input-group">
               <span className="input-icon"></span>
-              <input
-                type="text"
+              <textarea
                 placeholder="descripcion"
                 value={descripcion}
                 onChange={(e) => setDescripcion(e.target.value)}
                 className="form-input"
+                rows={6}
               />
             </div>
 
