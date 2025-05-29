@@ -6,20 +6,18 @@ export const DeleteTarea = () => {
   const { volver } = useVolverForm()
 
   return (
-    <>
-      <div className="auth-section">
-      <h2>¿Desea eleiminar la tarea?</h2>
-        <div className="auth-card">
-          <form onSubmit={handleDelete}>
-            <button type="submit" className="auth-button primary">
-              Eliminar
-            </button>
-            <button onClick={volver} className="auth-button primary">
-              Voler
-            </button>
-          </form>
-        </div>
+    <div className="delete-container">
+      <div className="delete-card">
+        <h2 className="delete-title">¿Desea eliminar la tarea?</h2>
+        <form onSubmit={handleDelete} className="delete-form">
+          <button type="submit" className="delete-button danger">
+            Eliminar
+          </button>
+          <button type="button" onClick={volver} className="delete-button">
+            Volver
+          </button>
+        </form>
       </div>
-    </>
+    </div>
   )
 }
