@@ -51,6 +51,7 @@ tareasUsuario.get('/usuario/tarea-unica/:id', async (req, res) => {
 
     if (tareaExiste.length === 0) {
       res.status(404).json({ meessage: 'No se encontro la tarea'})
+      return
     }
 
     res.status(200).json( tareaExiste[0] )
