@@ -8,7 +8,7 @@ export const DeleteTarea = () => {
   return (
     <div className="delete-container">
       <div className="delete-card">
-        <h2 className="delete-title">¿Desea eliminar la tarea?</h2>
+        <h2 className="auth-title">¿Desea eliminar la tarea?</h2>
         <form onSubmit={handleDelete} className="delete-form">
           <button type="submit" className="delete-button danger">
             Eliminar
