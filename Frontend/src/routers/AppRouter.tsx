@@ -4,6 +4,7 @@ import { Inicio } from '../pages/inicio/inicio'
 import { Tareas } from '../pages/tareas/tareas'
 import { AgregarTarea } from '../pages/tareas/agregarTarea'
 import { DeleteTarea } from '../pages/tareas/deleteFromTarea'
+import { ActualizarTarea } from '../pages/tareas/editarTareaHtml'
 import { RecuperarPassword } from '../pages/inicio/recuperar'
 
 const NotFound = () => <h2>Pagina no encontrada</h2>
@@ -33,6 +34,14 @@ export const AppRouter = () => {
         element={
           <ProtectedRoute>
             <DeleteTarea />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/tarea/actualizar/:id"
+        element={
+          <ProtectedRoute>
+            <ActualizarTarea />
           </ProtectedRoute>
         }
       />
