@@ -41,6 +41,27 @@ tareasUsuario.get('/usuario/tareas/:id', async (req, res) => {
   }
 })
 
+tareasUsuario.get('/usuario/tarea-unica/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const [tareaExiste] = await pool.query<TareasConsulta[]>(
+      'SELECT * FROM tareas WHERE id = ?', [id]
+    )
+
+    if (tareaExiste.length === 0) {
+      res.status(404).json({ meessage: 'No se encontro la tarea'})
+    }
+
+    res.status(200).json( tareaExiste[0] )
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error interno en el servidor',
+      error: error instanceof Error ? error.message : error
+    })
+  }
+})
+
 // Agregar una tarea especifica al usuario
 tareasUsuario.post('/usuario/agregar-tarea/:id', async (req, res) => {
   try {
