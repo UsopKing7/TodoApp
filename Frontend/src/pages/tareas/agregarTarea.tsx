@@ -14,35 +14,34 @@ export const AgregarTarea = () => {
   const { volver } = useVolverForm()
   return (
     <>
-      <div className="auth-section">
-        <div className="auth-card">
-          <h2 className="auth-title">Crear Tarea</h2>
+      <div className="form-section-dark">
+        <div className="form-card-dark">
+          <h2 className="form-title-dark">Crear Tarea</h2>
 
-          <form onSubmit={hadnledAgregarTarea} className="auth-form">
-            <div className="input-group">
-              <span className="input-icon"></span>
+          <form onSubmit={hadnledAgregarTarea} className="form-container-dark">
+            <div className="input-group-dark">
               <input
                 type="text"
-                placeholder="titulo tarea"
+                placeholder="Título de la tarea"
                 value={titulo}
                 onChange={(e) => setTitulo(e.target.value)}
-                className="form-input"
+                className="input-field-dark"
+                required
               />
             </div>
 
-            <div className="input-group">
-              <span className="input-icon"></span>
+            <div className="input-group-dark">
               <textarea
-                placeholder="descripcion"
+                placeholder="Descripción"
                 value={descripcion}
                 onChange={(e) => setDescripcion(e.target.value)}
-                className="form-input"
+                className="input-field-dark textarea-dark"
                 rows={6}
+                required
               />
             </div>
 
-            <div className="input-group">
-              <span className="input-icon"></span>
+            <div className="input-group-dark">
               <select
                 id="estado"
                 value={completada === null ? '' : completada}
@@ -50,20 +49,23 @@ export const AgregarTarea = () => {
                   const val = e.target.value
                   setCompletada(val === '' ? null : Number(val))
                 }}
-                className="form-input"
+                className="input-field-dark select-dark"
+                required
               >
-                <option value="">Seleccion el estado</option>
+                <option value="">Selecciona el estado</option>
                 <option value={0}>Pendiente</option>
                 <option value={1}>Realizada</option>
               </select>
             </div>
 
-            <button type="submit" className="auth-button primary">
-              Crear Tarea
-            </button>
-            <button onClick={volver} className="auth-button primary">
-              Volver
-            </button>
+            <div className="btn-group-dark">
+              <button type="submit" className="btn-dark primary-dark-btn">
+                Crear Tarea
+              </button>
+              <button type="button" onClick={volver} className="btn-dark primary-dark-btn">
+                Volver
+              </button>
+            </div>
           </form>
         </div>
       </div>

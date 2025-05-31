@@ -542,3 +542,124 @@
 .edit-button.primary:hover {
   background-color: var(--primary-light);
 }
+
+.form-section-dark {
+  min-height: 100vh;
+  background-color: var(--darker);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.form-card-dark {
+  background-color: var(--dark);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  padding: 2.5rem 3rem;
+  width: 100%;
+  max-width: 450px;
+  color: var(--light);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-title-dark {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-light);
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.form-container-dark {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.input-group-dark {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field-dark {
+  background-color: var(--darker);
+  border: 1.8px solid var(--primary-dark);
+  border-radius: var(--border-radius);
+  color: var(--light);
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: var(--transition);
+  outline: none;
+  resize: none;
+}
+
+.input-field-dark::placeholder {
+  color: var(--gray);
+  opacity: 0.85;
+}
+
+.input-field-dark:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 8px var(--primary-light);
+  background-color: var(--dark);
+  color: var(--light);
+}
+
+.textarea-dark {
+  min-height: 120px;
+  font-family: inherit;
+}
+
+.select-dark {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: var(--darker) url("data:image/svg+xml;charset=US-ASCII,%3csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M1 1L6 6L11 1' stroke='%236d28d9' stroke-width='2'/%3e%3c/svg%3e") no-repeat right 1rem center / 12px 8px;
+  padding-right: 2.5rem;
+}
+
+.btn-group-dark {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-dark {
+  flex: 1;
+  padding: 0.75rem 0;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+  border: 2px solid transparent;
+  color: var(--light);
+  user-select: none;
+}
+
+.primary-dark-btn {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.primary-dark-btn:hover {
+  background-color: var(--primary-light);
+  border-color: var(--primary-light);
+  box-shadow: 0 0 12px var(--primary-light);
+}
+
+.secondary-dark-btn {
+  background-color: transparent;
+  border: 2px solid var(--primary-light);
+  color: var(--primary-light);
+}
+
+.secondary-dark-btn:hover {
+  background-color: var(--primary-light);
+  color: var(--dark);
+  box-shadow: 0 0 12px var(--primary-light);
+}
